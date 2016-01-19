@@ -10,7 +10,7 @@ shinyServer(function(input, output) {
     
     # distrbution plot
 
-    # generate the x-variable for the distribution plot
+    # generate the x-variable for the distribution plot (-3 to +3 standard dev)
     probs<-seq(0.00135, .99865, .0001)
     quants<-qnorm(probs, input$mu, input$SD)
    
