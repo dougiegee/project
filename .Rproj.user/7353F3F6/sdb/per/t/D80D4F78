@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Capability Modeler\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"SD\",\n                  \"Standard Deviation:\",\n                  min = 0,\n                  max = 50,\n                  value = .5),\n      numericInput(inputId=\"mu\", value=0, label = \"Enter Process Mean\"),\n      numericInput(inputId=\"lsl\", value=-2, label = \"Enter LSL\"),\n      numericInput(inputId=\"usl\", value=2, label = \"Enter USL\")\n      \n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n#       p('Lower Spec'),\n#       textOutput('lsl'),\n#       p('Upper Spec'),\n#       textOutput('usl'),\n      plotOutput(\"Capaplot\")\n\n      \n      \n    )\n  )\n))\n\n",
+    "created" : 1452482311595.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3594563420",
+    "id" : "D80D4F78",
+    "lastKnownWriteTime" : 1452564677,
+    "path" : "~/R/data products/project/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

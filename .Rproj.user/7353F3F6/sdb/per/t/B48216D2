@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyServer(function(input, output) {\n\n  output$Capaplot <- renderPlot({\n\n    \n    # capa graph\n    \n   # lsl<-80\n   # usl<-140\n\n    # determine plot scale\n    \n    probs<-seq(0.01, .99, .01)\n    quants<-qnorm(probs, input$mu, input$SD)\n     \n    ifelse(quants[1] < input$lsl, x.lower<-quants[1]-.5*input$SD, x.lower<-input$lsl - 0.5*input$SD) \n    ifelse(quants[99] >input$usl, x.upper<-quants[99]+.5*input$SD, x.upper<-input$usl + 0.5*input$SD) \n    yfit<-dnorm(quants, mean=input$mu, sd=input$SD) \n    \n    Cp<-round((input$usl-input$lsl)/(6*input$SD),2)\n    Cp.positionx <- (x.lower + .05*(x.upper-x.lower))\n    Cp.positiony<- yfit[40]\n    plot(quants, yfit, type=\"l\", col=\"blue\", lwd=5, xlim=c(x.lower,x.upper))\n    text(Cp.positionx, Cp.positiony, paste(\"Cp = \", Cp))\n    lines(c(input$lsl, input$lsl), c(0, .4), col=\"red\",lwd=3)\n    lines(c(input$usl, input$usl), c(0, .4), col=\"red\",lwd=3)\n    \n\n  })\n\n    output$lsl<-renderText({input$lsl})\n    output$usl<-renderText({input$usl})\n  \n})\n",
+    "created" : 1452482312188.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1212033487",
+    "id" : "B48216D2",
+    "lastKnownWriteTime" : 1452564311,
+    "path" : "~/R/data products/project/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
