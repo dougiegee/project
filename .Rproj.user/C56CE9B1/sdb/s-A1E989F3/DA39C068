@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# Data Products Final Project\n# \n# This project calculates capability indices given\n#    - SD :  Standard Deviation\n#    - mu :  Mean\n#    - lsl : Lower specification limit (lowest value for an acceptable item)\n#    - usl : Upper specification limit (highest value for an acceptable item)\n#\n#  This app would be useful in a Six Sigma training environment to show users how these \n#   commonly used metric behave based on the distribution of the data and the \n#    allowable variation\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Capability Modeler\"),\n  \n  # Some helper text using MathJax to describe the equations\n  withMathJax(),\n  helpText('Capability statistics Cp and Cpk are used in manufacturing to show the relationship between the variation of\n                a process (distribution) and the allowed variation'),\n  helpText('The formulas for these statistics are:'),\n  helpText('\\\\(Cp=\\\\frac{USL-LSL}{6S}\\\\)'),\n  helpText('\\\\(Cpk=\\\\min\\\\left[\\\\left(\\\\frac{\\\\bar{x}-LSL}{6S}\\\\right),\\\\left(\\\\frac{USL-\\\\bar{x}}{6S}\\\\right)\\\\right]\\\\)'),\n  helpText('Notice that the \\\\(Cpk\\\\) value is penalized when the mean is not exactly centered between the spec limits.'),\n  \n  # Sidebar with a slider input for standard deviation, and mean, and numeric inputs for mean and specs\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"SD\",\n                  \"Standard Deviation:\",\n                  min = .0001,\n                  max = 5,\n                  value = 1),\n      sliderInput(\"mu\",\n                  \"Mean:\",\n                  min = -30,\n                  max = 30,\n                  step = 0.5,\n                  value = 0),\n  \n      numericInput(inputId=\"lsl\", value=-3, label = \"Enter Lower Specification (LSL)\"),\n      numericInput(inputId=\"usl\", value=3, label = \"Enter Upper Specification (USL)\")\n      \n    ),\n\n    # Show a plot of the generated distribution and spec limits\n    mainPanel(\n\n       plotOutput(\"Capaplot\")\n\n      \n      \n    )\n  )\n))\n\n",
+    "created" : 1453259327547.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2547940689",
+    "id" : "DA39C068",
+    "lastKnownWriteTime" : 1453317686,
+    "path" : "~/GitHub/data products/project/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
