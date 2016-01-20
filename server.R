@@ -31,8 +31,8 @@ shinyServer(function(input, output) {
     
     #plot distribution with specs
     plot(quants, yfit, type="l", col="blue", lwd=5, xlim=c(x.lower,x.upper), , xlab="Process Variable", ylab="")
-    lines(c(input$lsl, input$lsl), c(0, .4), col="red",lwd=3)
-    lines(c(input$usl, input$usl), c(0, .4), col="red",lwd=3)
+    lines(c(input$lsl, input$lsl), c(0, 40), col="red",lwd=3)
+    lines(c(input$usl, input$usl), c(0, 40), col="red",lwd=3)
     title(main=(paste("Cp=", Cp, "  Cpk=", Cpk)))
     
 

@@ -1,0 +1,17 @@
+{
+    "contents" : "\n\n\nlibrary(shiny)\n\nshinyServer(function(input, output) {\n\n  output$Capaplot <- renderPlot({\n\n    \n    # distrbution plot\n\n    # generate the x-variable for the distribution plot (-3 to +3 standard dev)\n    probs<-seq(0.00135, .99865, .0001)\n    quants<-qnorm(probs, input$mu, input$SD)\n   \n    # determine the x-scale based on the spec limits or the normal curve \n    # with .5*standard Deviation buffer\n    ifelse(quants[1] < input$lsl, x.lower<-quants[1]-.5*input$SD, x.lower<-input$lsl - 0.5*input$SD) \n    ifelse(quants[length(probs)] >input$usl, x.upper<-quants[length(probs)]+.5*input$SD, x.upper<-input$usl + 0.5*input$SD) \n    \n    \n    # y-values for the distribution curve\n    yfit<-dnorm(quants, mean=input$mu, sd=input$SD) \n    \n   \n    # Calculation of Capbility Metric Cp and Cpk\n    Cp<-round((input$usl-input$lsl)/(6*input$SD),2)\n    Cpk<-round(min((input$m-input$lsl)/(3*input$SD), (input$usl-input$mu)/(3*input$SD)),2)\n    \n    \n    #plot distribution with specs\n    plot(quants, yfit, type=\"l\", col=\"blue\", lwd=5, xlim=c(x.lower,x.upper), , xlab=\"Process Variable\", ylab=\"\")\n    lines(c(input$lsl, input$lsl), c(0, 40), col=\"red\",lwd=3)\n    lines(c(input$usl, input$usl), c(0, 40), col=\"red\",lwd=3)\n    title(main=(paste(\"Cp=\", Cp, \"  Cpk=\", Cpk)))\n    \n\n  })\n\n    output$lsl<-renderText({input$lsl})\n    output$usl<-renderText({input$usl})\n  \n})\n",
+    "created" : 1453259322295.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2325520668",
+    "id" : "ABE61A86",
+    "lastKnownWriteTime" : 1453263148,
+    "path" : "~/GitHub/data products/project/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
